@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
+const _ = require('lodash');
 const Joi = require('joi');
 const bodyParser = require('body-parser');
 const app = express();
+
 
 app.use('/public', express.static(path.join(__dirname, 'static')));
 app.use('/public', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
@@ -18,21 +20,21 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     
-    console.log(req.body);
+    console.log(_.map(req.body, 'name'));
 
-    const schema = Joi.object().keys({
-        email: Joi.string().trim().email().required(),
-        password: Joi.string().min(5).max(10).required()
-    });
+    // const schema = Joi.object().keys({
+    //     email: Joi.string().trim().email().required(),
+    //     password: Joi.string().min(5).max(10).required()
+    // });
 
-    Joi.validate({ email: 'art@kompr.ru', password: 'hero1181' }, schema, (err, result) => {
-        if(err) {
-            console.log(err);
-            res.send('an error has error'); 
-        }
-        console.log(result);
-        res.send('successfully posted data');
-    });
+    // Joi.validate({ email: 'art@kompr.ru', password: 'hero1181' }, schema, (err, result) => {
+    //     if(err) {
+    //         console.log(err);
+    //         res.send('an error has error'); 
+    //     }
+    //     console.log(result);
+    //     res.send('successfully posted data');
+    // });
 
     /*
     const schema = Joi.object().keys({

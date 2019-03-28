@@ -6,6 +6,7 @@ const app = express();
 app.use('/public', express.static(path.join(__dirname, 'static')));
 app.use('/public', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     console.log(path.join(__dirname, 'static', 'index.html'));
@@ -15,8 +16,9 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     console.log(req.body);
-    // database work here
-    res.send('successfully posted data');
+    // some database call here
+
+    res.json({success: true});
 });
 
 app.listen(3000);

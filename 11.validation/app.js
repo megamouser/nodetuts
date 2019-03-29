@@ -7,7 +7,7 @@ const userInput = { personalInfo: {
     streetAdress: '123987987',
     city: 'imagineCity',
     state: 'fl'
-}, preferences: arrayString };
+}, preferences: arrayObjects };
 
 const personalInfoSchema = Joi.object().keys({
     streetAdress: Joi.string().trim().required(),
@@ -15,7 +15,9 @@ const personalInfoSchema = Joi.object().keys({
     state: Joi.string().trim().length(2).required()
 });
 
-const preferencesSchema = Joi.array().items(Joi.string());
+const preferencesSchema = Joi.array().items(Joi.object().keys({
+    example: Joi.string().required()
+}));
 
 const schema = Joi.object().keys({
     personalInfo: personalInfoSchema,

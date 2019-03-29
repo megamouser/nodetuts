@@ -13,43 +13,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-    console.log(path.join(__dirname, 'static', 'index.html'));
-    console.log(path.join(__dirname, 'node_modules', 'bootstrap', 'dist'));
+    //console.log(path.join(__dirname, 'static', 'index.html'));
+    //console.log(path.join(__dirname, 'node_modules', 'bootstrap', 'dist'));
     res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
 app.post('/', (req, res) => {
-    
-    console.log(_.map(req.body, 'name'));
+    let keys = _.map(req.body, 'name');
+    let values = _.map(req.body, 'value');
+    let requestData = Object.assign({}, ...keys.map((n, index) => ({[n]: values[index]})));
 
-    // const schema = Joi.object().keys({
-    //     email: Joi.string().trim().email().required(),
-    //     password: Joi.string().min(5).max(10).required()
-    // });
-
-    // Joi.validate({ email: 'art@kompr.ru', password: 'hero1181' }, schema, (err, result) => {
-    //     if(err) {
-    //         console.log(err);
-    //         res.send('an error has error'); 
-    //     }
-    //     console.log(result);
-    //     res.send('successfully posted data');
-    // });
-
-    /*
     const schema = Joi.object().keys({
-        email: Joi.string().trim().email(),
-        password: Joi.string().min(5).max(10)
+        email: Joi.string().trim().email().required(),
+        password: Joi.string().min(5).max(10).required()
     });
 
-    Joi.validate(req.body, schema, (err, result) => {
+    Joi.validate(requestData, schema, (err, result) => {
         if(err) {
             console.log(err);
-        } else {
-            console.log(result);
+            res.send('data posting error'); 
         }
+        console.log(result);
+        res.send('successfully posted data');
     });
-    */
 });
 
 app.listen(3000);

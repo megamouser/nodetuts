@@ -12,11 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+app.get('/:userQuery', (req, res) => {
     //console.log(path.join(__dirname, 'static', 'index.html'));
     //console.log(path.join(__dirname, 'node_modules', 'bootstrap', 'dist'));
     //res.sendFile(path.join(__dirname, 'static', 'index.html'));
-    res.render('index');
+    res.render('index', { data:  { userQuery: req.params.userQuery, searchResults: ['book1', 'book2', 'book3'] }});
 });
 
 app.post('/', (req, res) => {

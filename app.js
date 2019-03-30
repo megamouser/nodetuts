@@ -12,6 +12,16 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/example', (req, res, next) => {
+    req.banana = 'banana';
+    console.log(req.url, req.method);
+    next();
+});
+
+app.get('/example', (req, res) => {
+    console.log(req.banana);
+    res.send('Middleware');
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'static', 'index.html'));    

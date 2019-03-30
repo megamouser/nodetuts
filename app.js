@@ -18,7 +18,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:userQuery', (req, res) => {
-    res.render('index', {data: {userQuery: req.params.userQuery}});
+    res.render('index', {
+            data: {
+                userQuery: req.params.userQuery, 
+                searchResults: ['book1', 'book2', 'book3'],
+                loggedIn: true,
+                username: 'megamouser'
+        }
+    });
 });
 
 app.post('/', (req, res) => {

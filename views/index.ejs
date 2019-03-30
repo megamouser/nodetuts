@@ -12,31 +12,8 @@
     <div class="container">
       <div class="row">
           <div class="col-sm">
-                <form action="/" method="POST" id="form">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input name="email" type="email" id="email" class="form-control" placeholder="Enter email"/>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
-                    </div>
-                    <div class="form-check">
-                        <input name="checkbox" type="checkbox" id="checkbox" class="form-check-input"/>
-                        <label class="form-check-label" for="checkbox ">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+            <h1>You searched for <%= data.userQuery %></h1>
           </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-            <h1>You Searched For: <%= data.userQuery %> </h1>
-            <ul>
-                <li><%= data.searchResults[0] %></li>
-            </ul>
-        </div>
       </div>
     </div>
   </body>
@@ -44,4 +21,5 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="public/js/bootstrap.js"></script>
   <script src="public/js/main.js"></script>
+
 </html>
